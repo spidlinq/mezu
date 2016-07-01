@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="mezu-framework:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mezu_framework_jar</output-path>
+    <root id="archive" name="mezu-framework.jar">
+      <element id="module-output" name="mezu-framework" />
+    </root>
+  </artifact>
+</component>
