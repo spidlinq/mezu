@@ -5,7 +5,7 @@ Based on the amazing work of: *Hydrotoast*, check github profile at https://gith
 
 ## Event-Driven Programming
 
-Most programs and devices like a cellphone respond to events — things that happen. For example, you might move your mouse, and the computer responds. Or you click a button, and the program does something interesting. In this chapter we’ll touch very briefly on how event-driven programming works.
+Most programs and devices like a cellphone respond to events — things that happen. For example, you might move your mouse, and the computer responds. Or you click a button, and the program does something interesting. This is a very basic EDP framework for Java.
 
 ## Features
 
