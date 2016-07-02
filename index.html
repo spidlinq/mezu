@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mezu-framework by spidlinq</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mezu-framework</h1>
+        <p>Mezu framework | A minimalistic Java based failsafe event driven framework</p>
+
+        <p class="view"><a href="https://github.com/spidlinq/mezu-framework">View the Project on GitHub <small>spidlinq/mezu-framework</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/spidlinq/mezu-framework/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/spidlinq/mezu-framework/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/spidlinq/mezu-framework">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="mezu-framework" class="anchor" href="#mezu-framework" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mezu framework</h1>
+
+<p>A minimalistic Java based failsafe event driven framework</p>
+
+<p>Based on the amazing work of: <em>Hydrotoast</em>, check github profile at <a href="https://github.com/Hydrotoast">https://github.com/Hydrotoast</a></p>
+
+<h2>
+<a id="event-driven-programming" class="anchor" href="#event-driven-programming" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event-Driven Programming</h2>
+
+<p>Most programs and devices like a cellphone respond to events — things that happen. For example, you might move your mouse, and the computer responds. Or you click a button, and the program does something interesting. This is a very basic EDP framework for Java.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Minimalistic Event driven framework.</li>
+<li>Full code failsafe.</li>
+<li>Full error handling using exception messages.</li>
+<li>Stable, light and fast.</li>
+</ul>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h2>
+
+<p>This framework is built using pure Java and for starting using it you only need 3 things:</p>
+
+<ul>
+<li>An event dispatcher (EbentDispatcher.class)</li>
+<li>A dispatchable event (AbstractEvent.class)</li>
+<li>An event handler (AbstractHandler.class)</li>
+</ul>
+
+<p>Once you have declared your Event class and your Handler for that event you can link them on dispatcher. This is all you need to do to link a some kind of behaviour to an action.</p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
+
+<ol>
+<li>
+<p>Create an <code>DemoEvent</code> class that inherits from <code>AbstractEvent</code>.</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DemoEvent</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractEvent</span> {
+
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> name;
+
+    <span class="pl-k">public</span> <span class="pl-en">DemoEvent</span>(<span class="pl-smi">String</span> <span class="pl-v">name</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>name <span class="pl-k">=</span> name;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {
+        <span class="pl-k">return</span> name;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">setName</span>(<span class="pl-smi">String</span> <span class="pl-v">name</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>name <span class="pl-k">=</span> name;
+    }
+}</pre></div>
+</li>
+<li>
+<p>Create a <code>DemoHandler</code> class that inherits from <code>AbstractHandler</code>. This class must hold the logic that you want to do when receiving that type of event. In this case, is just a simple <code>println</code>on <code>name</code> variable.</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">DemoHandler</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractHandler</span> {
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">dispatch</span>(<span class="pl-smi">AbstractEvent</span> <span class="pl-v">message</span>) {
+        <span class="pl-smi">DemoEvent</span> demoEvent <span class="pl-k">=</span> (<span class="pl-smi">DemoEvent</span>) message;
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>This message says: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> demoEvent<span class="pl-k">.</span>getName());
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Demo event successfully dispatched!<span class="pl-pds">"</span></span>);
+    }
+}</pre></div>
+</li>
+<li>
+<p>Register the created <code>DemoHandler</code> and link to that event. Link the handler to be executed when receiving a <code>DemoEvent</code> class message.</p>
+
+<div class="highlight highlight-source-java"><pre>dispatcher<span class="pl-k">.</span>registerEventHandler(<span class="pl-smi">DemoEvent</span><span class="pl-k">.</span>class, <span class="pl-k">new</span> <span class="pl-smi">DemoHandler</span>());</pre></div>
+</li>
+<li>
+<p>Dispatch a new <code>DemoEvent</code>event.</p>
+
+<div class="highlight highlight-source-java"><pre>dispatcher<span class="pl-k">.</span>dispatch(<span class="pl-k">new</span> <span class="pl-smi">DemoEvent</span>(<span class="pl-s"><span class="pl-pds">"</span>Hello World!<span class="pl-pds">"</span></span>));</pre></div>
+</li>
+</ol>
+
+<h3>
+<a id="code-example" class="anchor" href="#code-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code example</h3>
+
+<p>Full code example of event registestration, creation and dispatch is under <code>demo</code> folder. Here is the main code:</p>
+
+<div class="highlight highlight-source-java"><pre>  <span class="pl-smi">EbentDispatcher</span> dispatcher <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">EbentDispatcher</span>();
+  <span class="pl-k">try</span> {
+      dispatcher<span class="pl-k">.</span>registerEventHandler(<span class="pl-smi">DemoEvent</span><span class="pl-k">.</span>class, <span class="pl-k">new</span> <span class="pl-smi">DemoHandler</span>());
+      dispatcher<span class="pl-k">.</span>dispatch(<span class="pl-k">new</span> <span class="pl-smi">DemoEvent</span>(<span class="pl-s"><span class="pl-pds">"</span>Hello World!<span class="pl-pds">"</span></span>));
+  } <span class="pl-k">catch</span> (<span class="pl-smi">EventRegistrationException</span> <span class="pl-k">|</span> <span class="pl-smi">NoValidHandlerException</span> <span class="pl-k">|</span> <span class="pl-smi">EventDispatchException</span> e) {
+      <span class="pl-smi">System</span><span class="pl-k">.</span>err<span class="pl-k">.</span>println(e<span class="pl-k">.</span>getMessage());
+  }</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/spidlinq">spidlinq</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
